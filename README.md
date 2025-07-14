@@ -1,7 +1,14 @@
 # real-time-object-detector-with-VLM
 
-## install libraries and dependencies
+## features
+Capture: Handled by OpenCV
 
+Detect: YOLOv8 performs detection with bounding boxes
+
+Classify: detected objects by generating descriptions using the BLIP model.
+
+
+## install libraries and dependencies
 ### Install the OpenCV library for image and video processing.
 Command: `pip install opencv-python opencv-python-headless`
 
@@ -17,9 +24,4 @@ Command: `pip install torch torchvision torchaudio`
 ### Install NumPy for numerical operations and array handling.
 Command: `pip install numpy`
 
-### features
-Capture: Handled by OpenCV
 
-Detect: YOLOv8 performs detection with bounding boxes
-
-Classify: detected objects by generating descriptions using the BLIP model.
