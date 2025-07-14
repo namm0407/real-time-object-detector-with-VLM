@@ -114,10 +114,6 @@ try:
 except KeyboardInterrupt:
     print("Program terminated by user (Ctrl+C or similar).")
 
-# Cleanup camera and OpenCV windows
-cap.release()
-cv2.destroyAllWindows()
-
 # Start chatbot if an image was captured with the target object
 if photo_taken and image_description:
     print(f"\nChatbot activated! The image contains: {image_description}")
@@ -151,3 +147,7 @@ if photo_taken and image_description:
 
 else:
     print("No target object detected or no image captured. Chatbot not started.")
+
+# Cleanup camera and OpenCV windows
+cap.release()
+cv2.destroyAllWindows()
