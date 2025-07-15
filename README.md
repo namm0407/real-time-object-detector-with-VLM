@@ -1,5 +1,6 @@
-# real-time-object-detector-with-VLM
+# Real-time-object-detector-with-VLM
 
+## Files
 ### ori.py (Finished)
 Capture: Handled by OpenCV
 
@@ -18,7 +19,7 @@ Chatbot : Handled by Mixtral-8x7B
 
 ### chatbot2.py (trying other chatbots (In progess ...))
 
-## install libraries and dependencies
+## Install libraries and dependencies
 ### Install the OpenCV library for image and video processing.
 Command: `pip install opencv-python opencv-python-headless`
 
