@@ -1,13 +1,13 @@
 # real-time-object-detector-with-VLM
 
-### ori.py
+### ori.py (Finished)
 Capture: Handled by OpenCV
 
 Detect: YOLOv8 performs detection with bounding boxes
 
 Classify: detected objects by generating descriptions using the BLIP model.
 
-### with_chatbot.py
+### with_chatbot.py (In progess ...)
 
 Chatbot : Handled by Mixtral-8x7B
 
