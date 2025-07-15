@@ -6,18 +6,26 @@ Capture: Handled by OpenCV
 
 Detect: YOLOv8 performs detection with bounding boxes
 
-Classify: detected objects by generating descriptions using the BLIP model.
+Classify: detected objects by generating descriptions using the BLIP model (the wording of the boxes)
 
 ### with_chatbot.py (the code works but the repsonse of the chatbot is not accuracy)
 Capture: Handled by OpenCV
 
 Detect: YOLOv8 performs detection with bounding boxes
 
-Classify: detected objects by generating descriptions using the BLIP model.
+Classify: detected objects by generating descriptions using the BLIP model (the wording of the boxes)
 
 Chatbot : Handled by Mixtral-8x7B
 
 ### chatbot2.py (trying other chatbots (In progess ...))
+
+Capture: Handled by OpenCV
+
+Detect: YOLOv8 performs detection with bounding boxes
+
+Classify: detected objects by generating descriptions using the BLIP model (the wording of the boxes)
+
+Chatbot :
 
 ## Install libraries and dependencies
 ### Install the OpenCV library for image and video processing.
