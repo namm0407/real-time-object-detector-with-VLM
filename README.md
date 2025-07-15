@@ -1,7 +1,5 @@
 # real-time-object-detector-with-VLM
 
-## features
-
 ### ori.py
 Capture: Handled by OpenCV
 
