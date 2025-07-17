@@ -43,7 +43,7 @@ Capture: Handled by OpenCV
 
 Detect & Classify: YOLOv8 performs detection with bounding boxes
 
-chatbot: Qwen-VL (it will only answer questions about the image)
+chatbot: Qwen-VL (it will only answer questions about the image & if there is some words mispelled the chatbot will guess what the user is trying to ask)
 
 ## Install libraries and dependencies (For the blip one)
 
