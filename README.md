@@ -1,7 +1,7 @@
 # Real-time-object-detector-with-VLM
 
 ## Files
-### ori.py (Finished)
+### blip.py (Finished but no chatbot)
 Capture: Handled by OpenCV
 
 Detect: YOLOv8 performs detection with bounding boxes
@@ -27,7 +27,20 @@ Classify: detected objects by generating descriptions using the BLIP model (the 
 
 Chatbot :
 
-## Install libraries and dependencies
+### qwen.py (In progess)
+switched to qwen because the chatbot will have higher accuracy.
+
+Capture: Handled by OpenCV
+
+Detect: YOLOv8 performs detection with bounding boxes
+
+Classify: detected objects by generating descriptions using the qwen-vl model 
+
+#### so far
+
+the code is working. But the movement is a bit slow and it is also color blinded.
+
+## Install libraries and dependencies (For the blip one)
 
 ### Install the OpenCV library for image and video processing.
 Command: `pip install opencv-python opencv-python-headless`
