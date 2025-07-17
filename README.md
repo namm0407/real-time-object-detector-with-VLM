@@ -24,14 +24,6 @@ Chatbot : Handled by Mixtral-8x7B
 
 ### chatbot2.py (trying other chatbots (In progess ...))
 
-Capture: Handled by OpenCV
-
-Detect: YOLOv8 performs detection with bounding boxes
-
-Classify: detected objects by generating descriptions using the BLIP model (the wording of the boxes)
-
-Chatbot :
-
 ### qwen.py (In progess)
 switched to qwen because the chatbot will have higher accuracy.
 
@@ -51,7 +43,7 @@ Capture: Handled by OpenCV
 
 Detect & Classify: YOLOv8 performs detection with bounding boxes
 
-chatbot: Qwen-VL
+chatbot: Qwen-VL (it will only answer questions about the image)
 
 ## Install libraries and dependencies (For the blip one)
 
