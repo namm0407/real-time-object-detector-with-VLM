@@ -1,5 +1,10 @@
 # Real-time-object-detector-with-VLM
 
+## so far
+switching to qwen model because the chatbot in with_chatbot.py have really low accuracy (it's not even answering the questions)
+
+the code in qwen.py is working. But the movement is a bit slow and it is also color blinded.
+
 ## Files
 ### blip.py (Finished but no chatbot)
 Capture: Handled by OpenCV
@@ -35,10 +40,6 @@ Capture: Handled by OpenCV
 Detect: YOLOv8 performs detection with bounding boxes
 
 Classify: detected objects by generating descriptions using the qwen-vl model 
-
-#### so far
-
-the code is working. But the movement is a bit slow and it is also color blinded.
 
 ## Install libraries and dependencies (For the blip one)
 
