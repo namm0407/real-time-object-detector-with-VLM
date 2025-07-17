@@ -28,6 +28,7 @@ Classify: detected objects by generating descriptions using the BLIP model (the 
 Chatbot :
 
 ## Install libraries and dependencies
+
 ### Install the OpenCV library for image and video processing.
 Command: `pip install opencv-python opencv-python-headless`
 
@@ -38,9 +39,14 @@ Command: `pip install ultralytics`
 Command: `pip install transformers`
 
 ### Install PyTorch, which is required for both ultralytics and transformers.
+#### For faster setup (preferred)
+`pip install torch==2.2.1+cu121 torchvision==0.17.1+cu121 torchaudio==2.2.1+cu121 --index-url https://download.pytorch.org/whl/cu121`
+
+#### For normal setup
 Command: `pip install torch torchvision torchaudio`
 
 ### Install NumPy for numerical operations and array handling.
 Command: `pip install numpy`
+
 
 
