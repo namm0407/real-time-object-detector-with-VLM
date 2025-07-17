@@ -41,7 +41,12 @@ Detect: YOLOv8 performs detection with bounding boxes
 
 Classify: detected objects by generating descriptions using the qwen-vl model 
 
-### new.py (a new approach)
+### new.py (backup (without chatbot) )
+Capture: Handled by OpenCV
+
+Detect & Classify: YOLOv8 performs detection with bounding boxes
+
+### new_qwen.py (finished)
 Capture: Handled by OpenCV
 
 Detect & Classify: YOLOv8 performs detection with bounding boxes
