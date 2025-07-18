@@ -53,7 +53,7 @@ chatbot: Qwen-VL (it will only answer questions about the image & if there is so
 Pro: high speed in movement, color detected, high accuracy
 Cons: can only ask for specific object of the same kind but not unique ones (e.g. it only accept inputs like cup, but not red cup)
 
-### redo_qwen.py
+### redo_qwen.py (in progess...)
 Capture: Handled by OpenCV
 
 Detect: YOLOv8 performs detection with bounding boxes
