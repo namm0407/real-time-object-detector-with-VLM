@@ -40,7 +40,7 @@ Capture: Handled by OpenCV
 
 Detect & Classify: YOLOv8 performs detection with bounding boxes
 
-### new_qwen.py (finished -- realtime, color detected, high accuracy)
+### new_qwen.py (finished -- high speed in movement, color detected, high accuracy)
 
 #### it opens the camera, search for the required object (detected objects is in green boxing and required object is in red boxing), take a picture of the screen once the required object is founud and stops the camera. The VLM will provide a short description of the image and opens a chatbot for the user to ask questions related to the required object and the image.
 
