@@ -40,10 +40,29 @@ Capture: Handled by OpenCV
 
 Detect & Classify: YOLOv8 performs detection with bounding boxes
 
-### new_qwen.py (finished -- high speed in movement, color detected, high accuracy)
+### new_qwen.py (finished)
+it opens the camera, search for the required object (detected objects is in green boxing and required object is in red boxing), take a picture of the screen once the required object is founud and stops the camera. The VLM will provide a short description of the image and opens a chatbot for the user to ask questions related to the required object and the image.
 
-#### it opens the camera, search for the required object (detected objects is in green boxing and required object is in red boxing), take a picture of the screen once the required object is founud and stops the camera. The VLM will provide a short description of the image and opens a chatbot for the user to ask questions related to the required object and the image.
+Capture: Handled by OpenCV
 
+Detect & Classify: YOLOv8 performs detection with bounding boxes
+
+chatbot: Qwen-VL (it will only answer questions about the image & if there is some words mispelled the chatbot will guess what the user is trying to ask)
+
+#### functions
+Pro: high speed in movement, color detected, high accuracy
+Cons: can only ask for specific object of the same kind but not unique ones (e.g. it only accept inputs like cup, but not red cup)
+
+### redo_qwen.py
+Capture: Handled by OpenCV
+
+Detect: YOLOv8 performs detection with bounding boxes
+
+Classify & chatbot: Qwen-VL 
+
+the visual is very slow
+
+### advance_qwen.py (added Define valid colors for filtering)
 Capture: Handled by OpenCV
 
 Detect & Classify: YOLOv8 performs detection with bounding boxes
