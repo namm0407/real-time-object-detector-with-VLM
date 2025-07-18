@@ -3,7 +3,7 @@
 ## so far
 switching to qwen model because the chatbot in with_chatbot.py have really low accuracy (it's not even answering the questions)
 
-the code in qwen.py is working. But the movement is a bit slow and it is also color blinded.
+the code in new_qwen.py is working. The result are expected.
 
 ## Files
 ### blip.py (Finished but no chatbot)
