@@ -96,6 +96,33 @@ if image_path:
         # Load the saved image
         image = Image.open(image_path)
 
+        # Generate a short description of the image
+        description_prompt = "Provide a short description of the image."
+        conversation = [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "image", "image": image},
+                    {"type": "text", "text": description_prompt}
+                ]
+            }
+        ]
+
+        # Process the description prompt
+        inputs = processor.apply_chat_template(conversation, add_generation_prompt=True)
+        inputs = processor(
+            text=inputs,
+            images=[image],
+            padding=True,
+            return_tensors="pt"
+        ).to(device)
+
+        # Generate description
+        output_ids = model_vl.generate(**inputs, max_new_tokens=100)
+        description = processor.decode(output_ids[0], skip_special_tokens=True)
+        description = description.split("Assistant:")[-1].strip()
+        print(f"\nImage Description: {description}\n")
+
         # Chatbot loop
         while True:
             user_input = input("You: ").strip()
