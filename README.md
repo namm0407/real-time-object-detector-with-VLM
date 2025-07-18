@@ -5,6 +5,8 @@ switching to qwen model because the chatbot in with_chatbot.py have really low a
 
 the code in new_qwen.py is working. The result are expected.
 
+It opens the camera, search for the required object (detected objects is in green boxing and required object is in red boxing), take a picture of the screen once the required object is founud and stops the camera. The VLM will provide a short description of the image and opens a chatbot for the user to ask questions related to the required object and the image.
+
 ## Files
 ### blip.py (Finished but no chatbot)
 Capture: Handled by OpenCV
@@ -24,7 +26,7 @@ Chatbot : Handled by Mixtral-8x7B
 
 ### chatbot2.py (trying other chatbots (In progess ...))
 
-### qwen.py (In progess)
+### qwen.py (the movement is very slow and is colorblineded)
 switched to qwen because the chatbot will have higher accuracy.
 
 Capture: Handled by OpenCV
@@ -38,7 +40,10 @@ Capture: Handled by OpenCV
 
 Detect & Classify: YOLOv8 performs detection with bounding boxes
 
-### new_qwen.py (finished)
+### new_qwen.py (finished -- realtime, color detected, high accuracy)
+
+#### it opens the camera, search for the required object (detected objects is in green boxing and required object is in red boxing), take a picture of the screen once the required object is founud and stops the camera. The VLM will provide a short description of the image and opens a chatbot for the user to ask questions related to the required object and the image.
+
 Capture: Handled by OpenCV
 
 Detect & Classify: YOLOv8 performs detection with bounding boxes
