@@ -15,29 +15,54 @@ model = YOLO('yolov8n.pt')  # Pre-trained YOLOv8 nano model
 # Get valid class names from the model
 valid_classes = [name.lower() for name in model.names.values()]
 
-# Define valid colors for filtering (basic colors for simplicity)
+# Define valid colors and their HSV ranges
 valid_colors = ['red', 'blue', 'green', 'yellow', 'white', 'black']
 
-# Define HSV range for red (two ranges due to red wrapping around hue)
-red_lower1 = np.array([0, 70, 50])    # Lower red range
-red_upper1 = np.array([10, 255, 255])
-red_lower2 = np.array([170, 70, 50])  # Upper red range
-red_upper2 = np.array([180, 255, 255])
+color_hsv_ranges = {
+    'red': [
+        (np.array([0, 70, 50]), np.array([10, 255, 255])),    # Lower red range
+        (np.array([170, 70, 50]), np.array([180, 255, 255]))  # Upper red range
+    ],
+    'blue': [
+        (np.array([100, 70, 50]), np.array([130, 255, 255]))  # Blue range
+    ],
+    'green': [
+        (np.array([40, 70, 50]), np.array([80, 255, 255]))    # Green range
+    ],
+    'yellow': [
+        (np.array([20, 70, 50]), np.array([40, 255, 255]))    # Yellow range
+    ],
+    'white': [
+        (np.array([0, 0, 200]), np.array([180, 30, 255]))     # White range (high value, low saturation)
+    ],
+    'black': [
+        (np.array([0, 0, 0]), np.array([180, 255, 50]))       # Black range (low value)
+    ]
+}
 
-# Function to check if a region is predominantly red
-def is_red_region(roi):
+# Function to check if a region is predominantly a specified color
+def is_color_region(roi, color):
+    if color not in color_hsv_ranges:
+        return False
     # Convert ROI to HSV
     hsv_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
-    # Create masks for both red ranges
-    mask1 = cv2.inRange(hsv_roi, red_lower1, red_upper1)
-    mask2 = cv2.inRange(hsv_roi, red_lower2, red_upper2)
-    red_mask = cv2.bitwise_or(mask1, mask2)
-    # Calculate the percentage of red pixels
-    red_pixels = cv2.countNonZero(red_mask)
+    # Initialize mask
+    mask = None
+    # Apply each range for the specified color
+    for lower, upper in color_hsv_ranges[color]:
+        current_mask = cv2.inRange(hsv_roi, lower, upper)
+        if mask is None:
+            mask = current_mask
+        else:
+            mask = cv2.bitwise_or(mask, current_mask)
+    # Calculate the percentage of color pixels
+    color_pixels = cv2.countNonZero(mask)
     total_pixels = roi.shape[0] * roi.shape[1]
-    red_percentage = (red_pixels / total_pixels) * 100
-    # Consider it red if at least 20% of pixels are red (adjustable threshold)
-    return red_percentage > 20
+    if total_pixels == 0:  # Prevent division by zero
+        return False
+    color_percentage = (color_pixels / total_pixels) * 100
+    # Consider it the specified color if at least 20% of pixels match (adjustable threshold)
+    return color_percentage > 20
 
 # Preprocess target input to extract object and color
 def extract_object_and_color(target):
@@ -93,7 +118,6 @@ def set_window_focus(window_name):
 set_window_focus(window_name)
 
 # Object detection loop
-image_path = None
 try:
     while True:
         # Capture frame-by-frame
@@ -119,14 +143,12 @@ try:
                     x1, y1, x2, y2 = map(int, box)
                     label = f"{names[cls_id]} {conf:.2f}"
                     is_target = names[cls_id].lower() == target_object
-                    # Check color if specified (e.g., red)
-                    if is_target and target_color == 'red':
-                        # Extract ROI
+                    # Check color if specified
+                    if is_target and target_color:
                         roi = frame[y1:y2, x1:x2]
                         if roi.size == 0:  # Skip empty ROIs
                             continue
-                        # Check if ROI is red
-                        if not is_red_region(roi):
+                        if not is_color_region(roi, target_color):
                             is_target = False
                     if is_target:
                         cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 2)
