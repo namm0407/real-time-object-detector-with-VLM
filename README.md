@@ -3,13 +3,11 @@
 ## so far
 switching to qwen model because the chatbot in with_chatbot.py have really low accuracy (it's not even answering the questions)
 
-the code in new_qwen.py is working. The result are expected.
+the code in advance_qwen.py is working. The result are expected.
 
 It opens the camera, search for the required object (detected objects is in green boxing and required object is in red boxing), take a picture of the screen once the required object is founud and stops the camera. The VLM will provide a short description of the image and opens a chatbot for the user to ask questions related to the required object and the image.
 
-advance_qwen.py (in progess...)
-want to allow for a more specific object (so far added allow detecting objects with colors)
-adding chatbot 
+advance_qwen.py is similar to new_qwen.py but it allow for a more specific object (so far added allow detecting objects with colors)
 
 ## Files
 ### blip.py (Finished but no chatbot)
