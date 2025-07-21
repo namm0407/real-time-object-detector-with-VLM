@@ -7,7 +7,7 @@ import win32gui
 import win32con
 
 # Prompt user for the object to detect
-target_input = input("Enter the object you want to detect (e.g., person, car, dog, red cup): ").strip().lower()
+target_input = input("Enter the object you want to detect (e.g. car, dog, red cup): ").strip().lower()
 
 # Load the YOLOv8 model
 model = YOLO('yolov8n.pt')  # Pre-trained YOLOv8 nano model
@@ -16,8 +16,7 @@ model = YOLO('yolov8n.pt')  # Pre-trained YOLOv8 nano model
 valid_classes = [name.lower() for name in model.names.values()]
 
 # Define valid colors and their HSV ranges
-valid_colors = ['red', 'blue', 'green', 'yellow', 'white', 'black']
-
+valid_colors = ['red', 'blue', 'green', 'yellow', 'white', 'black', 'purple', 'orange', 'pink', 'brown', 'gray', 'cyan', 'magenta', 'teal', 'violet', 'gold']
 color_hsv_ranges = {
     'red': [
         (np.array([0, 70, 50]), np.array([10, 255, 255])),    # Lower red range
@@ -37,6 +36,36 @@ color_hsv_ranges = {
     ],
     'black': [
         (np.array([0, 0, 0]), np.array([180, 255, 50]))       # Black range (low value)
+    ],
+    'purple': [
+            (np.array([130, 70, 50]), np.array([160, 255, 255]))  # Purple range
+    ],
+    'orange': [
+        (np.array([10, 70, 50]), np.array([20, 255, 255]))    # Orange range
+    ],
+    'pink': [
+        (np.array([160, 70, 50]), np.array([170, 255, 255]))  # Pink range
+    ],
+    'brown': [
+        (np.array([10, 70, 20]), np.array([20, 255, 100]))    # Brown range (low value)
+    ],
+    'gray': [
+        (np.array([0, 0, 50]), np.array([180, 30, 200]))      # Gray range (medium value, low saturation)
+    ],
+    'cyan': [
+        (np.array([80, 70, 50]), np.array([100, 255, 255]))   # Cyan range
+    ],
+    'magenta': [
+        (np.array([150, 70, 50]), np.array([170, 255, 255]))  # Magenta range
+    ],
+    'teal': [
+        (np.array([80, 70, 20]), np.array([100, 255, 100]))   # Teal range (darker)
+    ],
+    'violet': [
+        (np.array([120, 70, 50]), np.array([140, 255, 255]))  # Violet range
+    ],
+    'gold': [
+        (np.array([20, 100, 100]), np.array([30, 255, 255]))  # Gold range (metallic yellow)
     ]
 }
 
@@ -61,8 +90,8 @@ def is_color_region(roi, color):
     if total_pixels == 0:  # Prevent division by zero
         return False
     color_percentage = (color_pixels / total_pixels) * 100
-    # Consider it the specified color if at least 20% of pixels match (adjustable threshold)
-    return color_percentage > 20
+    # Consider it the specified color if at least 30% of pixels match (adjustable threshold)
+    return color_percentage > 30
 
 # Preprocess target input to extract object and color
 def extract_object_and_color(target):
@@ -165,7 +194,7 @@ try:
         # Save image and exit if target object is detected
         if target_detected:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            image_path = f"detected_{target_object}_{timestamp}.jpg"
+            image_path = f"detected_{target_object} {'_with_' + target_color if target_color else ''}_{timestamp}.jpg"
             cv2.imwrite(image_path, frame)
             print(f"Image saved as {image_path}")
             break
