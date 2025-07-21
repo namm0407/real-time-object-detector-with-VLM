@@ -2,6 +2,9 @@ import cv2
 from ultralytics import YOLO
 import numpy as np
 from datetime import datetime
+from transformers import Qwen2VLForConditionalGeneration, AutoProcessor
+from PIL import Image
+import torch
 import sys
 import win32gui
 import win32con
@@ -223,3 +226,98 @@ finally:
     # Release webcam resources
     cap.release()
     cv2.destroyAllWindows()
+
+
+# Start chatbot if an image was saved
+if image_path:
+    print("Starting chatbot. Ask questions about the image or anything else. Type 'quit' to exit.")
+    
+    # Check if GPU is available, else fallback to CPU
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"Using device: {device}")
+
+    try:
+        # Load Qwen-VL model and processor
+        model_vl = Qwen2VLForConditionalGeneration.from_pretrained(
+            "Qwen/Qwen2-VL-7B-Instruct", torch_dtype=torch.float16 if device == "cuda" else torch.float32, device_map="auto"
+        )
+        processor = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-7B-Instruct")
+
+        # Load the saved image
+        image = Image.open(image_path)
+
+        # Generate a short description of the image
+        description_prompt = "Provide a short description of the image."
+        conversation = [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "image", "image": image},
+                    {"type": "text", "text": description_prompt}
+                ]
+            }
+        ]
+
+        # Process the description prompt
+        inputs = processor.apply_chat_template(conversation, add_generation_prompt=True)
+        inputs = processor(
+            text=inputs,
+            images=[image],
+            padding=True,
+            return_tensors="pt"
+        ).to(device)
+
+        # Generate description
+        output_ids = model_vl.generate(**inputs, max_new_tokens=100)
+        description = processor.decode(output_ids[0], skip_special_tokens=True)
+        description = description.split("Assistant:")[-1].strip()
+        print(f"\nImage Description: {description}\n")
+
+        # Chatbot loop
+        while True:
+            user_input = input("You: ").strip()
+            if user_input.lower() == 'quit':
+                print("Exiting chatbot.")
+                break
+
+            # Prepare the conversation input
+            conversation = [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "image", "image": image},
+                        {"type": "text", "text": user_input}
+                    ]
+                }
+            ]
+
+            # Process the input
+            inputs = processor.apply_chat_template(conversation, add_generation_prompt=True)
+            inputs = processor(
+                text=inputs,
+                images=[image],
+                padding=True,
+                return_tensors="pt"
+            ).to(device)
+
+            # Generate response
+            output_ids = model_vl.generate(**inputs, max_new_tokens=512)
+            response = processor.decode(output_ids[0], skip_special_tokens=True)
+            
+            # Extract only the assistant's response
+            response = response.split("Assistant:")[-1].strip()
+            print(f"Chatbot: {response}")
+
+    except Exception as e:
+        print(f"Error loading or running Qwen-VL model: {e}")
+        print("Chatbot could not be started. Ensure 'accelerate' is installed and system resources are sufficient.")
+
+    finally:
+        # Clean up model resources
+        if 'model_vl' in locals():
+            del model_vl
+            if device == "cuda":
+                torch.cuda.empty_cache()
+
+else:
+    print("No image was saved. Chatbot will not start.")
