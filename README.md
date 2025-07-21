@@ -51,7 +51,7 @@ chatbot: Qwen-VL (it will only answer questions about the image & if there is so
 
 #### functions
 Pro: high speed in movement, color detected, high accuracy
-Cons: can only ask for specific object of the same kind but not unique ones (e.g. it only accept inputs like cup, but not red cup)
+Cons: can only ask for specific object of the different colors (e.g. red cup, black cup)
 
 ### redo_qwen.py (in progess...)
 Capture: Handled by OpenCV
@@ -62,12 +62,15 @@ Classify & chatbot: Qwen-VL
 
 the visual is very slow
 
-### advance_qwen.py (added Define valid colors for filtering)
+### advance_qwen.py (added Define valid colors for filtering. in progess...)
 Capture: Handled by OpenCV
 
 Detect & Classify: YOLOv8 performs detection with bounding boxes
 
 chatbot: Qwen-VL (it will only answer questions about the image & if there is some words mispelled the chatbot will guess what the user is trying to ask)
+
+
+
 
 ## Install libraries and dependencies (For the blip one)
 
