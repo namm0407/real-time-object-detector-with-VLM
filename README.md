@@ -49,6 +49,8 @@ Detect & Classify: YOLOv8 performs detection with bounding boxes
 
 chatbot: Qwen-VL (it will only answer questions about the image & if there is some words mispelled the chatbot will guess what the user is trying to ask)
 
+limitations: can only detect object of single words. No specific objects
+
 #### functions
 Pro: high speed in movement, color detected, high accuracy
 Cons: can only ask for specific object of the different colors (e.g. red cup, black cup)
