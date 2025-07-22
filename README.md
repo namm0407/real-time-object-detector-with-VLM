@@ -66,7 +66,7 @@ Classify & chatbot: Qwen-VL
 
 the visual is very slow
 
-### advance_qwen.py (added Define valid colors for filtering. in progess...)
+### advance_qwen.py (added Define valid colors for filtering. Finished)
 Capture: Handled by OpenCV
 
 Detect & Classify: YOLOv8 performs detection with bounding boxes
