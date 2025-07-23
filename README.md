@@ -9,6 +9,14 @@ It opens the camera, search for the required object (detected objects is in gree
 
 advance_qwen.py is similar to new_qwen.py but it allow for a more specific object (so far added allow detecting objects with colors)
 
+# Files in used
+### advance_qwen.py (added Define valid colors for filtering. Finished)
+Capture: Handled by OpenCV
+
+Detect & Classify: YOLOv8 performs detection with bounding boxes
+
+chatbot: Qwen-VL (it will only answer questions about the image & if there is some words mispelled the chatbot will guess what the user is trying to ask)
+
 ## Files
 ### blip.py (Finished but no chatbot)
 Capture: Handled by OpenCV
@@ -72,9 +80,6 @@ Capture: Handled by OpenCV
 Detect & Classify: YOLOv8 performs detection with bounding boxes
 
 chatbot: Qwen-VL (it will only answer questions about the image & if there is some words mispelled the chatbot will guess what the user is trying to ask)
-
-
-
 
 ## Install libraries and dependencies (For the blip one)
 
