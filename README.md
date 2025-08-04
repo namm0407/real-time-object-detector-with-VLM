@@ -5,7 +5,7 @@ switching to qwen model because the chatbot in with_chatbot.py have really low a
 
 the code in advance_qwen.py is working. The result are expected.
 
-It opens the camera, search for the required object (detected objects is in green boxing and required object is in red boxing), take a picture of the screen once the required object is founud and stops the camera. The VLM will provide a short description of the image and opens a chatbot for the user to ask questions related to the required object and the image.
+Here is how this project works. It opens the camera, searches for the required object (detected objects is in green boxing and required object is in red boxing), takes a picture of the screen once the required object is found and stops the camera. The VLM will provide a short description of the image and open a chatbot for the user to ask questions related to the required object and the image.
 
 advance_qwen.py is similar to new_qwen.py but it allow for a more specific object (so far added allow detecting objects with colors)
 
