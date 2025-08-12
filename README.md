@@ -104,7 +104,7 @@ Command: `pip install numpy`
 
 ## run the code
 ### create a virtual environmenr
-`.\qwen_env\Scripts\activate`
+`.\myenv\Scripts\activate`
 
 
 
