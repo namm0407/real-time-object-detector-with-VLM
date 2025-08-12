@@ -102,5 +102,9 @@ Command: `pip install torch torchvision torchaudio`
 ### Install NumPy for numerical operations and array handling.
 Command: `pip install numpy`
 
+## run the code
+### create a virtual environmenr
+`.\qwen_env\Scripts\activate`
+
 
 
