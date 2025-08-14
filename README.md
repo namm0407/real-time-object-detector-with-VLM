@@ -102,6 +102,9 @@ Command: `pip install torch torchvision torchaudio`
 ### Install NumPy for numerical operations and array handling.
 Command: `pip install numpy`
 
+### install win32gui and win32con
+Command: `pip install pywin32`
+
 ## run the code
 ### create a virtual environmenr
 `python -m venv venv`
