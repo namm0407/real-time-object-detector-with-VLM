@@ -104,7 +104,8 @@ Command: `pip install numpy`
 
 ## run the code
 ### create a virtual environmenr
-`.\myenv\Scripts\activate`
+`python -m venv venv`
+`.\venv\Scripts\activate`
 
 
 
