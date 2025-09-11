@@ -9,6 +9,7 @@ chatbot: Qwen-VL (it will only answer questions about the image & if there is so
 
 ## functions
 Pro: high speed in movement, color detected, high accuracy
+
 Cons: can only ask for specific object of the different colors (e.g. red cup, black cup)
 
 ## Install libraries and dependencies 
