@@ -1,6 +1,12 @@
 # Real-time-object-detector-with-VLM
+
+## 🎯 Overview
+The object detector is built using YOLOv8l-world. This project was inspired by Agentic Object Detection developed by Andrew Ng, a pioneer in the field of artificial intelligence and the founder of LandingAI. I have taking this idea and create my own from scratch.
+
+Agentic Object Detection is an AI-driven technology that identifies and locates specific objects in images or videos using text prompts, without requiring extensive model training. This is a significant advancement from traditional object detection methods, as it leverages reasoning capabilities to provide more accurate and efficient detection
 Here is how this project works. It opens the camera, searches for the required object (detected objects is in green boxing and required object is in red boxing), takes a picture of the screen once the required object is found and stops the camera. The VLM will provide a short description of the image and open a chatbot for the user to ask questions related to the required object and the image.
 
+## Tools
 Capture: Handled by OpenCV
 
 Detect & Classify: YOLOv8 performs detection with bounding boxes (added Define valid colors for filtering)
